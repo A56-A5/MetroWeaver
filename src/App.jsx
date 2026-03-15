@@ -55,21 +55,42 @@ function App() {
     } else if (selectedStation === id) {
       setSelectedStation(null);
     } else {
-      const u = stations.find(s => s.id === selectedStation);
-      const v = stations.find(s => s.id === id);
-      const cost = calculateDistance(u, v);
-
-      const trackExists = tracks.find(
-        t => (t.u === u.id && t.v === v.id) || (t.u === v.id && t.v === u.id)
+      const uId = selectedStation;
+      const vId = id;
+      
+      const existingTrackIndex = tracks.findIndex(
+        t => (t.u === uId && t.v === vId) || (t.u === vId && t.v === uId)
       );
 
-      if (budget >= cost && !trackExists) {
-        setTracks(prev => [...prev, { u: u.id, v: v.id, weight: cost }]);
-        setBudget(prev => prev - cost);
+      if (existingTrackIndex !== -1) {
+        // Remove track
+        const trackToRemove = tracks[existingTrackIndex];
+        setTracks(prev => prev.filter((_, i) => i !== existingTrackIndex));
+        setBudget(prev => prev + trackToRemove.weight);
         setSelectedStation(null);
       } else {
-        setSelectedStation(null);
+        const u = stations.find(s => s.id === uId);
+        const v = stations.find(s => s.id === vId);
+        const cost = calculateDistance(u, v);
+
+        if (budget >= cost) {
+          setTracks(prev => [...prev, { u: u.id, v: v.id, weight: cost }]);
+          setBudget(prev => prev - cost);
+          setSelectedStation(null);
+        } else {
+          setSelectedStation(null);
+        }
       }
+    }
+  };
+
+  const removeTrack = (uId, vId) => {
+    const existingTrack = tracks.find(
+      t => (t.u === uId && t.v === vId) || (t.u === vId && t.v === uId)
+    );
+    if (existingTrack) {
+      setTracks(prev => prev.filter(t => t !== existingTrack));
+      setBudget(prev => prev + existingTrack.weight);
     }
   };
 
@@ -138,6 +159,7 @@ function App() {
         passengers={passengers}
         selectedStation={selectedStation}
         onStationClick={handleStationClick}
+        onTrackClick={removeTrack}
         onPassengerComplete={removePassenger}
       />
       

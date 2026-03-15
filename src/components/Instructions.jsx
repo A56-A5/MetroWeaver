@@ -20,7 +20,7 @@ const Instructions = ({ onClose }) => {
           </div>
           <div className="instruction-step">
             <span className="step-num">4</span>
-            <p><strong>Analyze Performance:</strong> Click "Analyze Network" to compare your design against the theoretical optimal (MST).</p>
+            <p><strong>Optimize & Edit:</strong> Re-click two stations or click a track directly to <strong>remove</strong> it and get a refund. Click "Analyze Network" to see the MST.</p>
           </div>
         </div>
         <div className="btn-group">

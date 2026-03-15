@@ -11,6 +11,7 @@ const GameBoard = ({
   passengers, 
   selectedStation, 
   onStationClick,
+  onTrackClick,
   onPassengerComplete 
 }) => {
   return (
@@ -36,7 +37,14 @@ const GameBoard = ({
           const u = stations.find(s => s.id === track.u);
           const v = stations.find(s => s.id === track.v);
           if (!u || !v) return null;
-          return <Track key={`track-${index}`} u={u} v={v} />;
+          return (
+            <Track 
+              key={`track-${index}`} 
+              u={u} 
+              v={v} 
+              onClick={() => onTrackClick(track.u, track.v)}
+            />
+          );
         })}
 
         {/* Render Stations */}
