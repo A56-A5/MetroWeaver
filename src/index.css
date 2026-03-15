@@ -49,7 +49,33 @@ body {
 .hud-metric {
   display: flex;
   flex-direction: column;
+  min-width: 100px;
+}
+
+.hud-controls {
+  display: flex;
+  gap: 12px;
   align-items: center;
+}
+
+.help-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.help-btn:hover {
+  opacity: 1;
 }
 
 .label {
@@ -66,21 +92,7 @@ body {
   color: var(--text-color);
 }
 
-.satisfaction-bar {
-  width: 120px;
-  height: 6px;
-  background: #f1f5f9;
-  border-radius: 3px;
-  margin-top: 4px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
 
-.satisfaction-fill {
-  height: 100%;
-  background: #10b981;
-  transition: width 0.3s ease;
-}
 
 .reset-btn {
   background: #f1f5f9;
@@ -236,6 +248,43 @@ body {
   gap: 12px;
   justify-content: center;
   margin-top: 24px;
+}
+
+.instructions-card {
+  max-width: 500px;
+}
+
+.instructions-content {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instruction-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.step-num {
+  background: var(--accent-color);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.instruction-step p {
+  margin: 0;
+  line-height: 1.4;
+  color: #475569;
 }
 
 .toggle-mst-btn {

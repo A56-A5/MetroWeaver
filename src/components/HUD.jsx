@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const HUD = ({ budget, stationsConnected, efficiency, satisfaction, onReset }) => {
+const HUD = ({ budget, stationsConnected, efficiency, onReset, onShowHelp }) => {
   return (
     <div className="hud">
       <div className="hud-metric">
@@ -15,7 +15,10 @@ const HUD = ({ budget, stationsConnected, efficiency, satisfaction, onReset }) =
         <span className="label">Efficiency</span>
         <span className="value">{(efficiency * 100).toFixed(1)}%</span>
       </div>
-      <button className="reset-btn" onClick={onReset}>New City</button>
+      <div className="hud-controls">
+        <button className="help-btn" onClick={onShowHelp} title="How to play">?</button>
+        <button className="reset-btn" onClick={onReset}>New City</button>
+      </div>
     </div>
   );
 };

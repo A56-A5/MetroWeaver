@@ -1,16 +1,62 @@
-# React + Vite
+# MetroWeaver: Subway Architect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MetroWeaver is a professional subway network planning simulator based on graph theory. Design efficient transit systems, manage budgets in Rupees (₹), and optimize for maximum connectivity and minimal cost.
 
-Currently, two official plugins are available:
+**Live Demo (if deployed)**: [GitHub Repository](https://github.com/A56-A5/MetroWeaver)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🏙️ Features
 
-## React Compiler
+- **Dynamic City Generation**: Randomly placed stations across a 2D map.
+- **Real-time Pathfinding**: Passengers (red dots) use Dijkstra's algorithm to find the shortest path between stations.
+- **Theoretical Optimization**: Compare your network against the **Minimum Spanning Tree (MST)** using Prim's algorithm.
+- **Budget Management**: Realistic construction costs based on Euclidean distances.
+- **Professional Aesthetics**: Clean, industrial slate-and-white grid theme.
+- **Mobile Responsive**: Fully adaptive UI for all device sizes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🕹️ How to Play
 
-## Expanding the ESLint configuration
+1. **Select Station**: Click on a station node to select it.
+2. **Build Track**: Click another station to build a track. The cost (₹) depends on the distance.
+3. **Monitor Efficiency**: Your efficiency score compares your current network cost to the theoretical minimum (MST).
+4. **Analyze**: Use the "Analyze Network" tool to visualize the optimal theoretical paths and view performance stats.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Framework**: React 18
+- **Build Tool**: Vite
+- **Styling**: Vanilla CSS (Industrial Theme)
+- **Algorithms**: Prim's (MST), Dijkstra's (Shortest Path)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/A56-A5/MetroWeaver.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd MetroWeaver
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 📐 Algorithmic Background
+
+- **Graph Theory**: Stations are nodes (vertices), and tracks are edges.
+- **MST (Minimum Spanning Tree)**: The cheapest possible way to connect all nodes. MetroWeaver uses Prim's algorithm to calculate this baseline.
+- **Dijkstra's Algorithm**: Used to calculate the shortest path for passengers traveling through the network.
+
+---
+Created with ❤️ by [A56-A5](https://github.com/A56-A5)

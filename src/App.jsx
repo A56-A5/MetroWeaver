@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import HUD from './components/HUD';
 import GameBoard from './components/GameBoard';
+import Instructions from './components/Instructions';
 import { createGraph, calculateDistance } from './logic/graph';
 import { generateCity } from './logic/cityGenerator';
 import { calculateMST } from './logic/mst';
@@ -21,6 +22,7 @@ function App() {
   const [efficiency, setEfficiency] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showMST, setShowMST] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
 
   // Derived graph object for algorithms
   const graph = useMemo(() => createGraph(stations, tracks), [stations, tracks]);
@@ -126,6 +128,7 @@ function App() {
         stationsConnected={stationsConnected}
         efficiency={efficiency}
         onReset={initCity}
+        onShowHelp={() => setShowInstructions(true)}
       />
       <GameBoard 
         stations={stations}
@@ -177,6 +180,10 @@ function App() {
             </div>
           </div>
         </div>
+      )}
+
+      {showInstructions && (
+        <Instructions onClose={() => setShowInstructions(false)} />
       )}
     </div>
   );
