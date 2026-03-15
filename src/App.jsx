@@ -19,7 +19,6 @@ function App() {
   const [passengers, setPassengers] = useState([]);
   const [mstData, setMstData] = useState({ totalCost: 0, edges: [] });
   const [efficiency, setEfficiency] = useState(1);
-  const [satisfaction, setSatisfaction] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showMST, setShowMST] = useState(false);
 
@@ -34,12 +33,12 @@ function App() {
     setBudget(INITIAL_BUDGET);
     setSelectedStation(null);
     setPassengers([]);
-    setSatisfaction(1);
     setShowResults(false);
     setShowMST(false);
     
     const mst = calculateMST(newStations);
     setMstData(mst);
+    setBudget(Math.ceil(mst.totalCost * 1.5));
     setEfficiency(1);
   }, []);
 
@@ -107,13 +106,6 @@ function App() {
           path,
           efficiency: pathEfficiency
         }]);
-
-        setSatisfaction(prev => {
-          const newSat = (prev * 0.95) + (pathEfficiency * 0.05);
-          return Math.max(0.2, Math.min(1, newSat));
-        });
-      } else {
-        setSatisfaction(prev => Math.max(0.1, prev - 0.02));
       }
     }, PASSENGER_SPAWN_INTERVAL);
 
@@ -133,7 +125,6 @@ function App() {
         budget={budget}
         stationsConnected={stationsConnected}
         efficiency={efficiency}
-        satisfaction={satisfaction}
         onReset={initCity}
       />
       <GameBoard 
@@ -160,11 +151,11 @@ function App() {
             <div className="results-grid">
               <div className="result-item">
                 <span className="label">Optimal MST Cost</span>
-                <span className="value">${mstData.totalCost.toFixed(0)}</span>
+                <span className="value">₹{mstData.totalCost.toFixed(0)}</span>
               </div>
               <div className="result-item">
                 <span className="label">Your Network Cost</span>
-                <span className="value">${currentCost.toFixed(0)}</span>
+                <span className="value">₹{currentCost.toFixed(0)}</span>
               </div>
               <div className="result-item">
                 <span className="label">Station Coverage</span>
